@@ -1,6 +1,6 @@
 const { uuid, isUuid } = require("uuidv4");
 const express = require("express");
-const { response } = require("express");
+const cors = require('cors')
 const app = express();
 
 const PORT = process.env.PORT || 3333;
@@ -25,6 +25,7 @@ const validateProjectId = (request, response, next) => {
   next();
 };
 
+app.use(cors())
 app.use(express.json());
 app.use(logRequests);
 app.use("/projects/:id", validateProjectId);
